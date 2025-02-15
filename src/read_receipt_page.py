@@ -18,7 +18,7 @@ col1, col2 = st.columns([1, 5]) # 1:5의 비율을 가집니다.(자유롭게 �
 with col1:
     st.image(Config.LOGO_DIR)
 with col2:
-    st.title("Pick Cook!")
+    st.title("ReceiPet")
 
 # 초대코드를 작성하는 사이드 바 폼입니다.
 with st.sidebar.form(key="inv_code_ckecker"):
@@ -33,8 +33,8 @@ if inv_code_submit and ("invitation_code" in st.session_state and st.session_sta
 if ("print_state" in st.session_state and st.session_state.print_state) and ("invitation_code" in st.session_state and st.session_state.invitation_code):
     st.sidebar.markdown(st.session_state.get("alert", ""), unsafe_allow_html=True)
 
-# Pick Cook을 쉽게 이용할 수 있도록 markdown으로 설명서를 제공합니다.
-st.subheader("Pick Cook 이용법")
+# ReceiPet을 쉽게 이용할 수 있도록 markdown으로 설명서를 제공합니다.
+st.subheader("ReceiPet 이용법")
 st.markdown("""
             1. 영수증을 업로드합니다.<br>
             2. 수정할 내용이 있다면 수정합니다.<br>
