@@ -11,19 +11,21 @@ def receipt_preprocessing(image):
         height, width = img.shape[:2]
 
         # 전처리: Grayscale
-        target_width = 1500
+        target_width = 1024
         aspect_ratio = height / width
         new_size = (target_width, int(target_width * aspect_ratio))
         resized_img = cv2.resize(img, new_size, interpolation=cv2.INTER_CUBIC)
 
         gray_img = cv2.cvtColor(resized_img, cv2.COLOR_BGR2GRAY)
 
-        binary_img = cv2.adaptiveThreshold(gray_img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 111, 15)
+        blur_img = cv2.GaussianBlur(gray_img, ksize=(5, 5), sigmaX=0, sigmaY=0)
 
-        blur_img = cv2.GaussianBlur(binary_img, ksize=(5, 5), sigmaX=0, sigmaY=0)
+        binary_img = cv2.adaptiveThreshold(blur_img, 255, cv2.ADAPTIVE_THRESH_GAUSSIAN_C, cv2.THRESH_BINARY, 51, 11)
+
+        
 
         # numpy.ndarray 이미지를 Base64로 변환
-        _, buffer = cv2.imencode('.png', blur_img)
+        _, buffer = cv2.imencode('.png', binary_img)
 
         base64_image = b64encode(buffer).decode('utf-8')
     

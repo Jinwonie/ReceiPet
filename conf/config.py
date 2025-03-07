@@ -14,6 +14,7 @@ class GPT:
     GPT_MODEL_NAME = "gpt-4o"
     GPT_SYSTEM = "You are an ocr model."
     GPT_QUESTION = """Below is a list of items from the receipt: Extract only the name of each item and answer in comma-separated format.
+    If the same item exists, print it only once.
     If it is not in receipt format, print the message, '이미지 분석 결과, 영수증이 아닌 것으로 보입니다. 영수증 이미지를 다시 한번 업로드해주세요.'"""
     
 class PERPLEXITY:
